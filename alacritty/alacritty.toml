@@ -1,0 +1,114 @@
+[general]
+live_config_reload = true
+ipc_socket = true
+
+[env]
+# No ENVs for now
+
+[window]
+dimensions.columns = 0
+dimensions.lines = 0
+position = "None"
+padding.x = 6
+padding.y = 6
+dynamic_padding = false # might turn off but looks cool ig
+decorations = "None"
+opacity = 1.0
+blur = false
+startup_mode = "Windowed"
+title = "Alacritty"
+dynamic_title = false
+# class = { instance = "Alacritty", general = "Alacritty" }
+decorations_theme_variant = "None"
+resize_increments = true
+option_as_alt = "None"
+
+[scrolling]
+history = 5000
+multiplier = 4
+
+[font]
+normal.family = "MonaspiceKr Nerd Font"
+normal.style = "Regular"
+bold.style = "Bold"
+italic.style = "Italic"
+bold_italic.style = "Bold Italic"
+size = 11.25
+offset.x = 0
+offset.y = 0
+glyph_offset.x = 0
+glyph_offset.y = 0
+builtin_box_drawing = true
+
+[colors.primary]
+foreground = "#ebdbb2"
+background = "#282828"
+dim_foreground = "#d5c4a1"
+bright_foreground = "#fbf1c7"
+
+[colors.cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+
+[colors.vi_mode_cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+
+[colors.search]
+matches.foreground = "#282828"
+matches.background = "#fb4934"
+focused_match.foreground = "#282828"
+focused_match.background = "#fabd2f"
+
+[colors.selection]
+text = "CellBackground"
+background = "CellForeground"
+
+[colors.normal]
+black = "#282828"
+red = "#fb4934"
+green = "#b8bb26"
+yellow = "#fabd2f"
+blue = "#83a589"
+magenta = "#d3869b"
+cyan = "#8ec07c"
+white = "#ebdbb2"
+
+[colors.bright]
+black = "#3c3836"
+red = "#cc241d"
+green = "#98971a"
+yellow = "#d79921"
+blue = "#458588"
+magenta = "#b16286"
+cyan = "#689d6a"
+white = "#fbf1c7"
+
+[colors.dim]
+black = "#1d2021"
+white = "#d5c4a1"
+
+[colors]
+indexed_colors = []
+transparent_background_colors = false
+draw_bold_text_with_bright_colors = true
+
+[bell]
+# Ancient technology not bothering with it
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = false
+
+[cursor]
+style.shape = "Block"
+style.blinking = "On"
+vi_mode_style = { shape = "Beam", blinking = "Off" }
+blink_interval = 750
+blink_timeout = 5
+unfocused_hollow = true
+thickness = 0.15
+
+[terminal]
+shell.program = "/bin/fish"
+osc52 = "Disabled"

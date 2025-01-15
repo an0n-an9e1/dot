@@ -1,0 +1,67 @@
+@define-color fg #ebdbb2;
+@define-color fg4 #504945;
+@define-color bg #1d2021;
+@define-color green #b8bb26;
+@define-color yellow #fabd2f;
+@define-color orange #fe8019;
+@define-color red #fb4934;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.bar {
+    color: @fg;
+    background-color: @bg;
+}
+
+.date {
+    padding: 2px;
+    padding-top: 5px;
+}
+
+.time {
+    padding: 2px;
+    padding-top: 5px;
+}
+
+.bat {
+    margin-right:10px;
+    margin-top: 3px;
+}
+
+.bat-charge {
+    margin-right: 10px;
+    margin-top: 3px;
+    color: @green;
+}
+
+.bat-yellow {
+    margin-right: 10px;
+    margin-top: 3px;
+    color: @yellow;
+}
+
+.bat-red {
+    margin-right: 10px;
+    margin-top: 3px;
+    color: @red;
+}
+
+.workspaces-widget {
+    margin-left: 5px;
+}
+
+
+.persistent {
+    color: @fg4;
+    margin: 5px;
+}
+
+.current {
+    color: @orange;
+}
+

@@ -1,0 +1,39 @@
+#!/bin/sh
+
+bat=/sys/class/power_supply/BAT0/
+per="$(cat "$bat/capacity")"
+
+icon() {
+    if [ "$per" -lt "15" ]; then
+        icon=""  # Icon for <15%
+        notify-send -u critical "Battery Low" "Connect Charger"
+    elif [ "$per" -lt "25" ]; then
+        icon=""  # Icon for <25%
+    elif [ "$per" -lt "50" ]; then
+        icon=""  # Icon for <50%
+    elif [ "$per" -lt "75" ]; then
+        icon=""  # Icon for <75%
+    elif [ "$per" -lt "100" ]; then
+        icon=""  # Icon for <100%
+    else
+        icon=""  # Icon for 100%
+    fi
+
+    echo "$icon"
+}
+
+status() {
+    if [ "$per" -lt "15" ]; then
+        echo "bat-red"
+    elif [ "$per" -lt "25" ]; then
+        echo "bat-yellow"
+    else
+        echo "bat"
+    fi
+}
+
+# Command line options
+[ "$1" = "icon" ] && icon && exit
+[ "$1" = "status" ] && status && exit
+exit
+

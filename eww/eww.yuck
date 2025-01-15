@@ -1,0 +1,89 @@
+(defpoll time
+    :interval "5s"
+
+    `date +"%I:%M %p"`)
+
+(defpoll date
+    :interval "1800s"
+
+    `date +"%d %b %a"`)
+
+(defwidget datetime []
+    (box
+        :halign "end"
+
+        (label :class "date" :text date)
+        (label :class "time" :text time))
+)
+
+(defpoll bat
+    :interval "1800s"
+
+    `dash ~/.config/eww/scripts/battery icon`)
+(defpoll batstat
+    :interval "1800s"
+    :initial "bat"
+
+    `dash ~/.config/eww/scripts/battery status`)
+
+(defwidget battery []
+    (tooltip
+        :halign "end"
+        :valign "center"
+
+        (label :class "tooltip" :text '${EWW_BATTERY["BAT0"].capacity}%${EWW_BATTERY["BAT0"].status == "Charging" ? " Charging" : ""}')
+        (label :class {EWW_BATTERY["BAT0"].status == "Charging" ? "bat-charge" : batstat} :text bat))
+)
+
+
+(deflisten workspaces 
+    :initial "[]" 
+
+    `bash ~/.config/eww/scripts/get-workspaces`)
+(deflisten current_workspace 
+    :initial "1" 
+
+    `bash ~/.config/eww/scripts/get-active-workspace`)
+
+
+(defwidget workspaces []
+  (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
+    (box :space-evenly true :halign "start"
+      (label :text "${workspaces}${current_workspace}" :visible false)
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box :class "persistent ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            (label :text "")
+            )
+          )
+        )
+      )
+    )
+  )
+
+
+
+(defwindow bar
+    :monitor 0 ; ... Find a way to figure out and setup monitors
+    :geometry (geometry
+        :x "0%"
+        :y "0%"
+        :width "100%"
+        :height "0%"
+        :anchor "bottom center")
+    :stacking "fg"
+    :exclusive true
+    :focusable false
+    
+    (centerbox
+        :class "bar"
+
+        (workspaces)
+        (box)
+        (box
+            :halign "end"
+
+            (battery)
+            (datetime)
+        )
+    ))
